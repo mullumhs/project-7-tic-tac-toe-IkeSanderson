@@ -27,7 +27,7 @@ def takeTurn(turnCount, board):
                 token = 'X'
                 turn = int(input("Player 1 Select a Collum (1 - 7):"))
             turn -= 1
-            if not turn > 0 and turn < 7:
+            if  turn >= 0 and turn < 7:
                 for Row in range(5,-1,-1):
                     if board[Row][turn] == '_':
                         board[Row][turn] = token
