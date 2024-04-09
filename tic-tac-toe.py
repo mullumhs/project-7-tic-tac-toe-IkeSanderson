@@ -9,8 +9,10 @@ def initialiseBoard():
         board.append(row)
     return board
 
+print(initialiseBoard())
+
 def displayBoard(board):
-    print("_1_2_3_4_5_6_7_")
+    print("_1_2_3_")
     for row in board:
         print("", end = "|")
         for cell in row:
@@ -35,7 +37,7 @@ def takeTurn(turnCount, board):
                 if board[row][col] == '_':
                     board[row][col] = token
                     turnCount += 1
-                    return turnCount
+                    return turnCount, board
             
             
         except:
@@ -50,20 +52,18 @@ def checkDraw(board):
 
 def checkHorizontal(board):
     
-    for row in range(4):
-        for col in range(4):
-            if (board[row][col] == board[row][col + 1] == board[row][col + 2] != '_') :
-                return  True
-            elif (board[row][col] == board[row][col - 1] == board[row][col - 2] != '_') :
-                return True
-            elif (board[row][col] == board[row][col - 1] == board[row][col + 1] != '_') :
-                return True
+    for row in range(3):
+        print(row)
+        if (board[row][0] == board[row][0 + 1] == board[row][0 + 2] != '_') :
+            return True
+        else:
+            return False
 
            
             
 def checkVertical(board):
-    for col in range(4):
-        for row in range(4):
+    for col in range(3):
+        for row in range(3):
             if (board[row][col] == board[row + 1][col] == board[row + 2][col] != '_' ) :
                 return True
             elif (board[row][col] == board[row - 1 ][col] == board[row - 2][col] != '_' ) :
@@ -73,8 +73,8 @@ def checkVertical(board):
            
             
 def checkDiagonal(board):
-    for row in range(4):
-        for col in range(4):
+    for row in range(3):
+        for col in range(3):
             if (board[row][col] == board[row + 1][col + 1] == board[row + 2][col + 2] != '_' ) :
               return True
             elif (board[row][col] == board[row + 1][col - 1] == board[row + 2][col - 2]  != '_' ) :
