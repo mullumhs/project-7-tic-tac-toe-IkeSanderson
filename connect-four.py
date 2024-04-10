@@ -90,7 +90,7 @@ def main():
                 print(" O Win!")
             break
         
-            break
+    
        
         if checkVertical(board) == True:
             displayBoard(board)
