@@ -21,15 +21,23 @@ def takeTurn(turnCount, board):
     
         if turnCount % 2 == 0:
             token = 'O'
-            colC = int(input("Player 2 Select a Column (1 - 3):"))
-            rowC = int(input("Player 2 Select a Row (1 - 3):"))
+            colC = input("Player 2 Select a Column (1 - 3):")
+            rowC = input("Player 2 Select a Row (1 - 3):")
         
         else:
             token = 'X'
-            colC = int(input("Player 1 Select a Column (1 - 3):"))
-            rowC = int(input("Player 1 Select a Row (1 - 3):"))
-        colC -= 1
-        rowC -= 1
+            colC =input("Player 1 Select a Column (1 - 3):")
+            rowC = input("Player 1 Select a Row (1 - 3):")
+        
+        if colC.isdigit() and rowC.isdigit():
+            colC = int(colC)
+            rowC = int(rowC)
+            colC -= 1
+            rowC -= 1
+        else:
+            print("Please Enter a Valid Move")
+            continue
+        
         if  colC >= 0 and colC < 3 and rowC >= 0 and rowC < 3 :
             if board[rowC][colC] == '_':
                 board[rowC][colC] = token
@@ -55,33 +63,47 @@ def checkDiagonal(board):
           return True
 
 def main():
-    turnCount = 1
-    board = initialiseBoard()
+    X = 0
+    O = 0
     while True:
-        displayBoard(board)
-        turnCount = takeTurn(turnCount, board)
-        if checkHorizontal(board) == True:
-            displayBoard(board)
-            if turnCount % 2 == 0:
-                print(" X Win!")
-            else:
-                print(" O Win!")
-            break
-        if checkVertical(board) == True:
-            displayBoard(board)
-            if turnCount % 2 == 0:
-                print(" X Win!")
-            else:
-                print(" O Win!")
-            break
-        if checkDiagonal(board) == True:
-            displayBoard(board)
-            if turnCount % 2 == 0:
-                print(" X Win!")
-            else:
-                print(" O Win!")
-            break
+        turnCount = 1
+        board = initialiseBoard()
+    
+        while True:
+                displayBoard(board)
+                turnCount = takeTurn(turnCount, board)
+                if checkHorizontal(board) == True:
+                    displayBoard(board)
+                    if turnCount % 2 == 0:
+                        print(" X Win!")
+                    else:
+                        print(" O Win!")
+                    break
+                if checkVertical(board) == True:
+                    displayBoard(board)
+                    if turnCount % 2 == 0:
+                        print(" X Win!")
+                        win = 'X'
+                    else:
+                        print(" O Win!")
+                        win = 'O'
+                    break
+                if checkDiagonal(board) == True:
+                    displayBoard(board)
+                    if turnCount % 2 == 0:
+                        print(" X Win!")
+                        win = 'X'
+                    else:
+                        print(" O Win!")
+                        win = 'O'
+                    break
+        if win == 'X':
+            X = X + 1
+        elif win == 'O':
+            
+
         
+            
        
         
 

@@ -3,28 +3,29 @@ def initialiseBoard():
     for rows in range(6):
         row = []
         for col in range(7):
-            row.append('_')
+            row.append(f'_')
         board.append(row)
     return board
          
     
 def displayBoard(board):
-    print("_1_2_3_4_5_6_7_")
+    print(" 1 2 3 4 5 6 7 ")
+    print(BLUE + "_______________" + RESET)
     for row in board:
-        print("", end = "|")
+        print("", end = BLUE + "|" + RESET)
         for cell in row:
-            print(cell, end = "|")
+            print( BLUE+ cell + RESET, end = BLUE + "|" + RESET)
         print()
 
 def takeTurn(turnCount, board):
     while True:
         try:
             if turnCount % 2 == 0:
-                token = 'O'
+                token = YELLOW + 'O' + RESET
                 turn = int(input("Player 2 Select a Collum (1 - 7):"))
             
             else:
-                token = 'X'
+                token = RED + 'O' + RESET
                 turn = int(input("Player 1 Select a Collum (1 - 7):"))
             turn -= 1
             if  turn >= 0 and turn < 7:
@@ -85,9 +86,9 @@ def main():
         if checkHorizontal(board) == True:
             displayBoard(board)
             if turnCount % 2 == 0:
-                print(" X Win!")
+                print(RED + " Red Win!" + RESET)
             else:
-                print(" O Win!")
+               print(YELLOW + " Yellow Win!" + RESET)
             break
         
     
@@ -95,22 +96,63 @@ def main():
         if checkVertical(board) == True:
             displayBoard(board)
             if turnCount % 2 == 0:
-                print(" X Win!")
+                print(RED + " Red Win!" + RESET)
             else:
-                print(" O Win!")
+                print(YELLOW + " Yellow Win!" + RESET)
             break
         
         if checkDiagonal(board) == True:
             displayBoard(board)
             if turnCount % 2 == 0:
-                print(" X Win!")
+                print(RED + " Red Win!" + RESET)
             else:
-                print(" O Win!")
+                print(YELLOW + " Yellow Win!" + RESET)
             break
         
         if checkDraw(board) == True:
             print("Draw!")
             break
+
+BLACK = '\033[30m'
+RED = '\033[31m'
+GREEN = '\033[32m'
+YELLOW = '\033[33m' # orange on some systems
+BLUE = '\033[34m'
+MAGENTA = '\033[35m'
+CYAN = '\033[36m'
+LIGHT_GRAY = '\033[37m'
+DARK_GRAY = '\033[90m'
+BRIGHT_RED = '\033[91m'
+BRIGHT_GREEN = '\033[92m'
+BRIGHT_YELLOW = '\033[93m'
+BRIGHT_BLUE = '\033[94m'
+BRIGHT_MAGENTA = '\033[95m'
+BRIGHT_CYAN = '\033[96m'
+WHITE = '\033[97m'
+
+RESET = '\033[0m' # called to return to standard terminal text color
+
+
+
+BACKGROUND_BLACK = '\033[40m'
+BACKGROUND_RED = '\033[41m'
+BACKGROUND_GREEN = '\033[42m'
+BACKGROUND_YELLOW = '\033[43m' # orange on some systems
+BACKGROUND_BLUE = '\033[44m'
+BACKGROUND_MAGENTA = '\033[45m'
+BACKGROUND_CYAN = '\033[46m'
+BACKGROUND_LIGHT_GRAY = '\third-party033[47m'
+BACKGROUND_DARK_GRAY = '\033[100m'
+BACKGROUND_BRIGHT_RED = '\033[101m'
+BACKGROUND_BRIGHT_GREEN = '\033[102m'
+BACKGROUND_BRIGHT_YELLOW = '\033[103m'
+BACKGROUND_BRIGHT_BLUE = '\033[104m'
+BACKGROUND_BRIGHT_MAGENTA = '\033[105m'
+BACKGROUND_BRIGHT_CYAN = '\033[106m'
+BACKGROUND_WHITE = '\033[107m'
+
+
+
 while True:
     print()
     print("-Welcome To Connect 4 -")
