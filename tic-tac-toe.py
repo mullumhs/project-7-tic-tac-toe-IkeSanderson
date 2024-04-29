@@ -100,13 +100,12 @@ def main():
         if win == 'X':
             X = X + 1
         elif win == 'O':
-            
+            O =  O + 1 
 
         
             
        
         
-
 
 
 if __name__ == "__main__":

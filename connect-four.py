@@ -1,3 +1,4 @@
+
 def initialiseBoard():
     board = []
     for rows in range(6):
@@ -69,19 +70,19 @@ def checkDiagonal(board):
     for row in range(3):
         
         for col in range(4):
-            print("checkDiagonal")
             if (board[row][col] == board[row + 1][col + 1] == board[row + 2][col + 2] == board[row + 3][col + 3] != '_' ) :
               return True
-            elif (board[row][col] == board[row + 1][col - 1] == board[row + 2][col - 2] == board[row + 3][col - 3] != '_' ) :
+
+    for row in range(3):
+        
+        for col in range(6,2,-1):
+            if (board[row][col] == board[row + 1][col - 1] == board[row + 2][col - 2] == board[row + 3][col - 3] != '_' ) :
               return True
-            elif (board[row][col] == board[row - 1][col + 1] == board[row - 2][col + 2] == board[row - 3][col + 3] != '_' ) :
-              return True
-            elif (board[row][col] == board[row - 1][col - 1] == board[row - 2][col - 2] == board[row - 3][col - 3] != '_' ) :
-              return True
+            
            
 
 
-def main(): 
+def main(Red,Yellow): 
     os.system('clear')
     print()
     print(RED +"Welcome", YELLOW + "To", RED + "Connect ", YELLOW + "4" + RESET)
@@ -89,8 +90,11 @@ def main():
     turnCount = 1
     board = initialiseBoard()
     Draw = checkDraw(board)
-    Winner =  "Blank"
-    while True:        
+    
+    
+    while True:   
+        print(RED + f"Red: {Red}"+ RESET + YELLOW + f" Yellow: {Yellow}" + RESET)     
+        print()
         displayBoard(board)
         turnCount = takeTurn(turnCount, board)
        
@@ -98,8 +102,10 @@ def main():
             displayBoard(board)
             if turnCount % 2 == 0:
                 print(RED + " Red Win!" + RESET)
+                Red = Red + 1
             else:
                print(YELLOW + " Yellow Win!" + RESET)
+               Yellow = Yellow + 1
             break
         
     
@@ -108,22 +114,28 @@ def main():
             displayBoard(board)
             if turnCount % 2 == 0:
                 print(RED + " Red Win!" + RESET)
+                Red = Red + 1
             else:
                 print(YELLOW + " Yellow Win!" + RESET)
+                Yellow = Yellow + 1
             break
         
         if checkDiagonal(board):
             displayBoard(board)
             if turnCount % 2 == 0:
                 print(RED + " Red Win!" + RESET)
+                Red = Red + 1
             else:
                 print(YELLOW + " Yellow Win!" + RESET)
+                Yellow = Yellow + 1
             break
         
         if checkDraw(board) == True:
             print("Draw!")
             break
+    
     time.sleep(2)
+    return Red, Yellow
 
 import os
 import time
@@ -166,6 +178,8 @@ BACKGROUND_BRIGHT_CYAN = '\033[106m'
 BACKGROUND_WHITE = '\033[107m'
 
 
-
+Red = 0
+Yellow = 0
 while True:
-    main()
+    main(Red, Yellow)
+   
