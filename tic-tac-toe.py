@@ -42,6 +42,7 @@ def takeTurn(turnCount, board):
             if board[rowC][colC] == '_':
                 board[rowC][colC] = token
                 turnCount += 1
+                os.system('cls')
                 return turnCount
         else:
             print("Please Enter a Valid Move")
@@ -65,45 +66,49 @@ def checkDiagonal(board):
 def main():
     X = 0
     O = 0
+    
     while True:
         turnCount = 1
         board = initialiseBoard()
-    
+        os.system('cls')
         while True:
+           
+            displayBoard(board)
+            turnCount = takeTurn(turnCount, board)
+            if checkHorizontal(board) == True:
                 displayBoard(board)
-                turnCount = takeTurn(turnCount, board)
-                if checkHorizontal(board) == True:
-                    displayBoard(board)
-                    if turnCount % 2 == 0:
-                        print(" X Win!")
-                    else:
-                        print(" O Win!")
-                    break
-                if checkVertical(board) == True:
-                    displayBoard(board)
-                    if turnCount % 2 == 0:
-                        print(" X Win!")
-                        win = 'X'
-                    else:
-                        print(" O Win!")
-                        win = 'O'
-                    break
-                if checkDiagonal(board) == True:
-                    displayBoard(board)
-                    if turnCount % 2 == 0:
-                        print(" X Win!")
-                        win = 'X'
-                    else:
-                        print(" O Win!")
-                        win = 'O'
-                    break
+                if turnCount % 2 == 0:
+                    print(" X Win!")
+                else:
+                    print(" O Win!")
+                break
+            if checkVertical(board) == True:
+                displayBoard(board)
+                if turnCount % 2 == 0:
+                    print(" X Win!")
+                    win = 'X'
+                else:
+                    print(" O Win!")
+                    win = 'O'
+                break
+            if checkDiagonal(board) == True:
+                displayBoard(board)
+                if turnCount % 2 == 0:
+                    print(" X Win!")
+                    win = 'X'
+                else:
+                    print(" O Win!")
+                    win = 'O'
+                break
         if win == 'X':
             X = X + 1
         elif win == 'O':
             O =  O + 1 
+    
+    time.sleep(2)
 
-        
-            
+import os 
+import time            
        
         
 
