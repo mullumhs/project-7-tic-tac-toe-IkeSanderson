@@ -44,8 +44,10 @@ def takeTurn(turnCount, board):
                 turnCount += 1
                 os.system('cls')
                 return turnCount
+            else:
+                print("Please Enter a Valid Move")
         else:
-            print("Please Enter a Valid Move")
+                print("Please Enter a Valid Move")
     
 def checkHorizontal(board):
     for row in range(3):
@@ -67,20 +69,28 @@ def main():
     X = 0
     O = 0
     
+    
     while True:
         turnCount = 1
         board = initialiseBoard()
         os.system('cls')
+        print("Welcome to Tic Tac Toe")
+        print("----------------------")
+        print(f"    X - {X} : O - {O} ")
+        print("----------------------")
         while True:
-           
+            
             displayBoard(board)
+            print()
             turnCount = takeTurn(turnCount, board)
             if checkHorizontal(board) == True:
                 displayBoard(board)
                 if turnCount % 2 == 0:
                     print(" X Win!")
+                    win = "X"
                 else:
                     print(" O Win!")
+                    win = "O"
                 break
             if checkVertical(board) == True:
                 displayBoard(board)
@@ -104,8 +114,10 @@ def main():
             X = X + 1
         elif win == 'O':
             O =  O + 1 
+        time.sleep(2)
     
-    time.sleep(2)
+    
+    
 
 import os 
 import time            
@@ -114,4 +126,5 @@ import time
 
 
 if __name__ == "__main__":
+    
     main()
