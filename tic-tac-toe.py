@@ -1,4 +1,5 @@
 def initialiseBoard():
+    # Defines board and rows then appends the row lists to the board according to the For Loop
     board = []
     for rows in range(3):
         row = []
@@ -8,8 +9,10 @@ def initialiseBoard():
     return board
 
 def displayBoard(board):
+    
     print("  1_2_3")
     rName = 0
+    # Loops through each row in the board and formats it neatly
     for row in board:
         rName += 1
         print(rName, end = "|")
@@ -18,7 +21,7 @@ def displayBoard(board):
         print()
 def takeTurn(turnCount, board):
     while True:
-    
+        # Checks if the turn count is divisible by 2 with no remainder, if so sets player to O otherwise player is X
         if turnCount % 2 == 0:
             token = 'O'
             colC = input("Player 2 Select a Column (1 - 3):")
@@ -28,7 +31,7 @@ def takeTurn(turnCount, board):
             token = 'X'
             colC =input("Player 1 Select a Column (1 - 3):")
             rowC = input("Player 1 Select a Row (1 - 3):")
-        
+        # Checks if inputs are numbers then sets to ints and removes 1 from both to fit with list syntax starting with 0
         if colC.isdigit() and rowC.isdigit():
             colC = int(colC)
             rowC = int(rowC)
@@ -37,7 +40,7 @@ def takeTurn(turnCount, board):
         else:
             print("Please Enter a Valid Move")
             continue
-        
+        # Checks if coordinates are within the parameters of the 3 x 3 board if so replaces the cell if blank with current player's token and adds 1 to the turn count 
         if  colC >= 0 and colC < 3 and rowC >= 0 and rowC < 3 :
             if board[rowC][colC] == '_':
                 board[rowC][colC] = token
@@ -50,16 +53,19 @@ def takeTurn(turnCount, board):
                 print("Please Enter a Valid Move")
     
 def checkHorizontal(board):
+    # Loops through rows checking whether all cells in the row are equal and not blank if so someone has won 
     for row in range(3):
       if board[row][0] == board[row][1] == board[row][2] != '_':
           return True
       
 def checkVertical(board):
+    # Loops through columns checking whether all cells in the column are equal and not blank if so someone has won 
     for col in range(3):
       if board[0][col] == board[1][col] == board[2][col] != '_':
           return True
 
 def checkDiagonal(board):
+      #Checks whether diagonal cells are equal and not blank for each direction, if so someone has won
       if board[0][0] == board[1][1] == board[2][2] != '_':
           return True
       if board[0][2] == board[1][1] == board[2][0] != '_':
@@ -71,6 +77,7 @@ def main():
     
     
     while True:
+        # The outer game loop that runs after each match reseting it to the base and printing the score
         turnCount = 1
         board = initialiseBoard()
         os.system('cls')
