@@ -71,6 +71,13 @@ def checkDiagonal(board):
       if board[0][2] == board[1][1] == board[2][0] != '_':
           return True
 
+def checkDraw(board):
+    for row in board:
+        for cell in row:
+            if cell == "_":
+                return False
+    return True
+
 def main():
     X = 0
     O = 0
@@ -80,16 +87,20 @@ def main():
         # The outer game loop that runs after each match reseting it to the base and printing the score
         turnCount = 1
         board = initialiseBoard()
+        # Clears the Board History
         os.system('cls')
+        # Display The Welcome Screen and Scores
         print("Welcome to Tic Tac Toe")
         print("----------------------")
         print(f"    X - {X} : O - {O} ")
         print("----------------------")
         while True:
-            
+            # Inner game loop for idividual matches 
             displayBoard(board)
             print()
+            # Calls the Take Turn
             turnCount = takeTurn(turnCount, board)
+            # Checks if someone won and who by calling all win checks
             if checkHorizontal(board) == True:
                 displayBoard(board)
                 if turnCount % 2 == 0:
@@ -117,10 +128,17 @@ def main():
                     print(" O Win!")
                     win = 'O'
                 break
+            # Checks if all cells are full and not blank
+            if checkDraw(board) == True:
+                displayBoard(board)
+                print("Draw!")
+                break
+        # Adds wins to total
         if win == 'X':
             X = X + 1
         elif win == 'O':
             O =  O + 1 
+        # Makes the system pause for 2 seconds
         time.sleep(2)
     
     
